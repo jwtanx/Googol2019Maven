@@ -138,6 +138,14 @@ public class Command {
 
                 run = false;
                 System.out.println("Logged out successfully.");
+                
+                System.out.println("\n\nGoogol - © 2019 SUPERJEEVAN [Jeevan, Nicole, Dywei, Chen Yi, J.W. Tan]\n");
+                System.out.println(" __..  ..__ .___.__    ..___.___.  ..__..  .\n" +
+                                   "(__ |  |[__)[__ [__)   |[__ [__ \\  /[__]|\\ |\n" +
+                                   ".__)|__||   [___|  \\\\__|[___[___ \\/ |  || \\|");
+                
+                System.out.println("\nSponsored by University of Malaya.");
+        
                 System.exit(0);
                 break;
             }  
