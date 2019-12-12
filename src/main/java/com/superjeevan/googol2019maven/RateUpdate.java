@@ -28,7 +28,7 @@ public class RateUpdate {
         
         if (checkConnection()) {
             System.out.println("Last Update: " + sdf.format(filename.lastModified()));
-            System.out.println("Sorry. Due to some technical defficulties, we are unable to update. Dont worry your Internet Connection is good!");
+            System.out.println("Sorry. Due to some technical difficulties, we are unable to update. Don't worry your Internet Connection is good!");
 //            update();         // <-- Get blocked by Google ERR_429
         } else {
             System.out.println("Last Update: " + sdf.format(filename.lastModified()));
