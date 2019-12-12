@@ -30,7 +30,7 @@ public class WeatherDisplay {
                 System.out.println("Updating data now...");
                 WeatherUpdate up = new WeatherUpdate();
             } else {
-                System.out.println("Could not update at the momment. Please connect to Internet to update.");
+                System.out.println("Could not update at the moment. Please connect to Internet to update.");
             }
         } else {
             display();
