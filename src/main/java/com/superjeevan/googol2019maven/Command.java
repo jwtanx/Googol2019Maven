@@ -26,7 +26,7 @@ public class Command {
     
     private String greetings[] = {"Good day", "Hello there", "Hi hi", "Selamat sejahtera", "Hi there", "Glad to meet you again"};
     
-    private String tryCMD[] = {"Tell me a joke", "Convert 100usd to myr", "x 100 eur to jpy", "123CAD -> SGD", "Play Tic Tac Toe", "What is the time now?", "How's the wheather today?", "Movie?", "Show current popular movies", "Show overall good movies", "List of Star Wars movies"};
+    private String tryCMD[] = {"Tell me a joke", "Convert 100usd to myr", "x 100 eur to jpy", "123CAD -> SGD", "Play Tic Tac Toe", "What is the time now?", "How's the wheather today?", "Movie?", "Show current popular movies", "Show overall good movies", "List of Star Wars movies", "c 90/200+3*2"};
     
     private String googolCMD[]
             = {"g /update",
@@ -38,11 +38,13 @@ public class Command {
                 "g /history -v\t\t\tView list of searches you made in Googol",
                 "g /history -d\t\t\tDelete searches in Googol",
                 "cls\t\t\t\tClear current screen",
-                "convert 123.123 EUR -> JPY\tConvert currency",
-                "x 123.12USD to EUR\t\tConvert currency",
                 "s Popcorn\t\t\tSearch websites that contain POPCORN",
-                "Time\t\t\t\tDisplay time & date",
+                "c 1+2/4*2\t\t\tCalculator",
+                "x 123.12USD to EUR\t\tConvert currency",
+                "convert 123.123 EUR -> JPY\tConvert currency",
                 "Tic Tac Toe\t\t\tPlay Tic Tac Toe",
+                "Time\t\t\t\tDisplay time & date",
+                "Dice\t\t\t\tDice game",
                 "Jokes\t\t\t\tSkrattar du förlorar du",
                 "Movie\t\t\t\tTop movies",
                 "Weather\t\t\t\tDisplay weather",
@@ -81,7 +83,7 @@ public class Command {
         this.name = name;
     }
 
-    // CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE
+// CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE HERE CONSOLE
     public void cmd() {
 
         boolean run = true;
@@ -122,8 +124,10 @@ public class Command {
             }
             
 // EXIT QUIT LOGOUT EXIT QUIT LOGOUT EXIT QUIT LOGOUT EXIT QUIT LOGOUT EXIT QUIT LOGOUT EXIT QUIT 
-            else if (cmd.equalsIgnoreCase("quit") || cmd.equalsIgnoreCase("exit")) {
-
+            else if (cmd.equalsIgnoreCase("quit") || cmd.equalsIgnoreCase("exit") || cmd.equalsIgnoreCase("logout")) {
+                
+                cls();
+                
                 try {
 
                     dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
@@ -137,15 +141,29 @@ public class Command {
                 }
 
                 run = false;
-                System.out.println("Logged out successfully.");
                 
-                System.out.println("\n\nGoogol - © 2019 SUPERJEEVAN [Jeevan, Nicole, Dywei, Chen Yi, J.W. Tan]\n");
-                System.out.println(" __..  ..__ .___.__    ..___.___.  ..__..  .\n" +
-                                   "(__ |  |[__)[__ [__)   |[__ [__ \\  /[__]|\\ |\n" +
-                                   ".__)|__||   [___|  \\\\__|[___[___ \\/ |  || \\|");
+                notDisplaySuperJeevan();
+                delay(5);
+                cls();
                 
-                System.out.println("\nSponsored by University of Malaya.");
-        
+                DisplaySuperJeevan();
+                delay(5);
+                cls();
+                
+                notDisplaySuperJeevan();
+                delay(5);
+                cls();
+                
+                DisplaySuperJeevan();
+                delay(5);
+                cls();
+                
+                notDisplaySuperJeevan();
+                delay(5);
+                cls();
+                
+                DisplaySuperJeevan();
+                
                 System.exit(0);
                 break;
             }  
@@ -179,9 +197,23 @@ public class Command {
                 
             }
             
+// DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME
+            else if (cmd.toLowerCase().contains("roll dice game") || cmd.toLowerCase().contains("dice")) {
+
+                DiceGame game = new DiceGame();
+                
+            }
+            
 // RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT
             else if (cmd.substring(0, 2).equalsIgnoreCase("x ") || cmd.toLowerCase().contains("convert") || cmd.toLowerCase().contains(" to ") || cmd.contains("->")) {
                 RateConvert rate = new RateConvert(cmd);
+                
+            }
+            
+// CALCULATOR CALCULATOR CALCULATOR CALCULATOR CALCULATOR CALCULATOR CALCULATOR CALCULATOR CALCULATOR
+            else if (cmd.substring(0, 2).equalsIgnoreCase("c ")) {
+                
+                CalculatorV2 calc = new CalculatorV2(cmd.substring(2), 0);
                 
             }
             
@@ -260,6 +292,7 @@ public class Command {
                 
                 System.out.println("List of updates available");
                 System.out.println("1. Currency\n2. Movie ranking list\n3. Weather");
+                System.out.print("Choice: ");
                 int updateChoice = s.nextInt();
                 
                 if(updateChoice == 1){
@@ -275,6 +308,9 @@ public class Command {
                 }
                 else if(updateChoice == 3){
                     WeatherUpdate wu = new WeatherUpdate();
+                    break;
+                }
+                else{
                     break;
                 }
                 
@@ -332,5 +368,36 @@ public class Command {
             Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void delay(int n){
+        try {
+            Thread.sleep(n * 100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void notDisplaySuperJeevan(){
+        System.out.println("Logged out successfully.");
+                
+        System.out.println("\n\nGoogol | (c) 2019 SUPERJEEVAN [Jeevan, Nicole, Dywei, Chen Yi, J.W. Tan]\n");
 
+        System.out.println("\n\n");
+
+        System.out.println("\nSponsored by University of Malaya.");
+    }
+    
+    public void DisplaySuperJeevan(){
+        System.out.println("Logged out successfully.");
+                
+        System.out.println("\n\nGoogol | (c) 2019 SUPERJEEVAN [Jeevan, Nicole, Dywei, Chen Yi, J.W. Tan]\n");
+
+        System.out.println(" __..  ..__ .___.__    ..___.___.  ..__..  .\n" +
+                           "(__ |  |[__)[__ [__)   |[__ [__ \\  /[__]|\\ |\n" +
+                           ".__)|__||   [___|  \\\\__|[___[___ \\/ |  || \\|");
+
+        System.out.println("\nSponsored by University of Malaya.");
+    }
+    
+    
 }
