@@ -15,9 +15,33 @@ public class Main {
         
         cls();
         System.out.println("\nGoogol by\n");
-        System.out.println(" __..  ..__ .___.__    ..___.___.  ..__..  .\n" +
-                           "(__ |  |[__)[__ [__)   |[__ [__ \\  /[__]|\\ |\n" +
-                           ".__)|__||   [___|  \\\\__|[___[___ \\/ |  || \\|");
+        
+        System.out.print(" __..  ..__ .___.__    ..___.___.  ..__..  .\n");
+        delay(5);
+        System.out.print("(__ |  |[__)[__ [__)   |[__ [__ \\  /[__]|\\ |\n");
+        delay(5);
+        System.out.println(".__)|__||   [___|  \\\\__|[___[___ \\/ |  || \\|");
+        delay(5);
+
+        cls();
+        System.out.println("\nGoogol by\n");
+        
+        System.out.print(" __..  ..__ .___.__    ..___.___.  ..__..  .\n");
+        delay(3);
+        System.out.print("(__ |  |[__)[__ [__)   |[__ [__ \\  /[__]|\\ |\n");
+        delay(3);
+        System.out.println(".__)|__||   [___|  \\\\__|[___[___ \\/ |  || \\|");
+        delay(3);
+
+        cls();
+        System.out.println("\nGoogol by\n");
+
+        System.out.print(" __..  ..__ .___.__    ..___.___.  ..__..  .\n");
+        delay(2);
+        System.out.print("(__ |  |[__)[__ [__)   |[__ [__ \\  /[__]|\\ |\n");
+        delay(2);
+        System.out.println(".__)|__||   [___|  \\\\__|[___[___ \\/ |  || \\|");
+        delay(1);
         
         System.out.print("\n\nEnter your name to sign in: ");
 
@@ -34,6 +58,14 @@ public class Main {
             io.printStackTrace();
         } catch (InterruptedException ex) {
             Logger.getLogger(Command.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void delay(int n){
+        try {
+            Thread.sleep(n * 100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
