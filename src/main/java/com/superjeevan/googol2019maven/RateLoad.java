@@ -25,7 +25,7 @@ public class RateLoad {
                 System.out.println("Updating data now...");
                 RateUpdate up = new RateUpdate();
             } else {
-                System.out.println("Could not update at the momment. Please connect to Internet to update.");
+                System.out.println("Could not update at the moment. Please connect to Internet to update.");
             }
         }
 
