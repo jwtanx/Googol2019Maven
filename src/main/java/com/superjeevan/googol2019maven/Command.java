@@ -26,7 +26,7 @@ public class Command {
     
     private String greetings[] = {"Good day", "Hello there", "Hi hi", "Selamat sejahtera", "Hi there", "Glad to meet you again"};
     
-    private String tryCMD[] = {"Tell me a joke", "Convert 100usd to myr", "x 100 eur to jpy", "123CAD -> SGD", "Play Tic Tac Toe", "What is the time now?", "How's the wheather today?", "Movie?", "Show current popular movies", "Show overall good movies", "List of Star Wars movies", "c 90/200+3*2"};
+    private String tryCMD[] = {"Tell me a joke", "Convert 100usd to myr", "x 100 eur to jpy", "123CAD -> SGD", "Play Tic Tac Toe", "What is the time now?", "How's the wheather today?", "Movie?", "Show current popular movies", "Show overall good movies", "List of Star Wars movies", "c 90/200+3*2", "Set an appointment"};
     
     private String googolCMD[]
             = {"g /update",
@@ -48,12 +48,15 @@ public class Command {
                 "Jokes\t\t\t\tSkrattar du förlorar du",
                 "Movie\t\t\t\tTop movies",
                 "Weather\t\t\t\tDisplay weather",
+                "Appointment\t\t\tSet an appointment",
                 "Exit\t\t\t\tLog out"};
 
     // LIST OF FILE PATH
-    private File dataDirectory = new File(System.getProperty("user.home") + "\\Desktop\\Googol");
-    private File dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
-    private File userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+//    private File dataDirectory = new File(System.getProperty("user.home") + "\\Desktop\\Googol");
+//    private File dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
+//    private File userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+    private File dataPath = new File(this.name + "_Data.dat");
+    private File userHistory = new File(this.name + "_History.txt");
 
     public Command() {
         name = "";
@@ -130,7 +133,8 @@ public class Command {
                 
                 try {
 
-                    dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
+//                    dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
+                    dataPath = new File(this.name + "_Data.dat");
                     ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(dataPath));
                     o.writeUTF(this.name);
                     o.writeInt(this.numOfSearch);
@@ -143,23 +147,23 @@ public class Command {
                 run = false;
                 
                 notDisplaySuperJeevan();
-                delay(5);
+                delay(4);
                 cls();
                 
                 DisplaySuperJeevan();
-                delay(5);
+                delay(4);
                 cls();
                 
                 notDisplaySuperJeevan();
-                delay(5);
+                delay(4);
                 cls();
                 
                 DisplaySuperJeevan();
-                delay(5);
+                delay(4);
                 cls();
                 
                 notDisplaySuperJeevan();
-                delay(5);
+                delay(4);
                 cls();
                 
                 DisplaySuperJeevan();
@@ -182,27 +186,27 @@ public class Command {
                 cls();
             
             }
-
-// WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER
-            else if(cmd.toLowerCase().contains("weather")){
-                
-                WeatherDisplay wd = new WeatherDisplay();
             
-            }
-            
-// TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE
-            else if (cmd.toLowerCase().contains("tic tac toe") || cmd.toLowerCase().contains("tic") || cmd.toLowerCase().contains("tac")) {
-
-                TicTacToeSmarterAI game = new TicTacToeSmarterAI();
+// SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH
+            else if(cmd.substring(0, 2).equalsIgnoreCase("s ")){
                 
-            }
-            
-// DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME
-            else if (cmd.toLowerCase().contains("roll dice game") || cmd.toLowerCase().contains("dice")) {
-
-                DiceGame game = new DiceGame();
+                this.numOfSearch++;
                 
-            }
+                Search s = new Search(cmd.substring(2));
+                
+                try {
+
+//                    userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+                    userHistory = new File(this.name + "_History.txt");
+                    PrintWriter p = new PrintWriter(new FileOutputStream(userHistory, true));
+                    Date currentDate = new Date();
+                    p.println("[" + currentDate + "] - " + cmd.substring(2));
+                    p.close();
+
+                } catch (IOException IOE) {
+                    System.err.println("Problem saving history.");
+                }
+            } 
             
 // RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT RATE CONVERT
             else if (cmd.substring(0, 2).equalsIgnoreCase("x ") || cmd.toLowerCase().contains("convert") || cmd.toLowerCase().contains(" to ") || cmd.contains("->")) {
@@ -217,6 +221,13 @@ public class Command {
                 
             }
             
+// TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE TIC TAC TOE
+            else if (cmd.toLowerCase().contains("tic tac toe") || cmd.toLowerCase().contains("tic") || cmd.toLowerCase().contains("tac")) {
+
+                TicTacToeSmarterAI game = new TicTacToeSmarterAI();
+                
+            }
+            
 // MOVIE LIST MOVIE LIST MOVIE LIST MOVIE LIST MOVIE LIST MOVIE LIST MOVIE LIST MOVIE LIST
             else if(cmd.toLowerCase().contains("movie")){
                 
@@ -224,11 +235,32 @@ public class Command {
                 
             }
             
+// WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER WEATHER
+            else if(cmd.toLowerCase().contains("weather")){
+                
+                WeatherDisplay wd = new WeatherDisplay();
+            
+            }
+            
+// APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT 
+            else if(cmd.toLowerCase().contains("appointment")){
+                
+                Appointment setAppointment = new Appointment();
+            
+            }
+            
 // TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES
-            else if (cmd.toLowerCase().contains("joke") || cmd.equalsIgnoreCase("again")) {
+            else if (cmd.toLowerCase().contains("joke")) {
                 
                 TellJokes jokes = new TellJokes();
 
+            }
+            
+// DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME
+            else if (cmd.toLowerCase().contains("roll dice game") || cmd.toLowerCase().contains("dice")) {
+
+                DiceGame game = new DiceGame();
+                
             }
             
 // TIME DATE TIME DATE TIME DATE TIME DATE TIME DATE TIME DATE TIME DATE TIME DATE TIME 
@@ -236,26 +268,6 @@ public class Command {
                 Date t = new Date();
                 System.out.println(t);
             }
-            
-// SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH SEARCH
-            else if(cmd.substring(0, 2).equalsIgnoreCase("s ")){
-                
-                this.numOfSearch++;
-                
-                Search s = new Search(cmd.substring(2));
-                
-                try {
-
-                    userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
-                    PrintWriter p = new PrintWriter(new FileOutputStream(userHistory, true));
-                    Date currentDate = new Date();
-                    p.println("[" + currentDate + "] - " + cmd.substring(2));
-                    p.close();
-
-                } catch (IOException IOE) {
-                    System.err.println("Problem saving history.");
-                }
-            } 
             
 // OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS OTHERS
             else {
@@ -265,7 +277,8 @@ public class Command {
                 
                 try {
 
-                    userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+//                    userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+                    userHistory = new File(this.name + "_History.txt");
                     PrintWriter p = new PrintWriter(new FileOutputStream(userHistory, true));
                     Date currentDate = new Date();
                     p.println("[" + currentDate + "] - " + cmd);
@@ -318,7 +331,8 @@ public class Command {
             // User history
             case 1:
                 try {
-                    userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+//                    userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+                    userHistory = new File(this.name + "_History.txt");
                     Scanner s = new Scanner(new FileInputStream(userHistory));
 
                     while (s.hasNextLine()) {
@@ -334,7 +348,8 @@ public class Command {
 
             // User requests to remove history
             case 2:
-                userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+//                userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+                userHistory = new File(this.name + "_History.txt");
                 Scanner s = new Scanner(System.in);
 
                 System.out.print("Are you sure you want to remove history? (Y/N): ");
