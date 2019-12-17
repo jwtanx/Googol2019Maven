@@ -48,7 +48,7 @@ public class Command {
                 "Jokes\t\t\t\tSkrattar du förlorar du",
                 "Movie\t\t\t\tTop movies",
                 "Weather\t\t\t\tDisplay weather",
-                "Appointment\t\t\tSet an appointment",
+                "Appointment\t\t\tSet an appointment, List appointments, Delete appointments",
                 "Exit\t\t\t\tLog out"};
 
     // LIST OF FILE PATH
@@ -245,8 +245,26 @@ public class Command {
 // APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT 
             else if(cmd.toLowerCase().contains("appointment")){
                 
-                Appointment setAppointment = new Appointment();
-            
+                if(cmd.toLowerCase().contains("show ") || cmd.toLowerCase().contains("list ")){
+                    Appointment list = new Appointment();
+                    list.displayAppointment();
+                    
+                } else if(cmd.toLowerCase().contains("set ")){
+                    Appointment set = new Appointment();
+                    set.askStartEndNCreateAppointment();
+                } else {
+                    
+                    System.out.println("Set or display: ");
+                    String appointmentChoice = s.nextLine();
+
+                    if (appointmentChoice.equalsIgnoreCase("set")) {
+                        Appointment set = new Appointment();
+                        set.askStartEndNCreateAppointment();
+                    } else if (appointmentChoice.equalsIgnoreCase("display")) {
+                        Appointment list = new Appointment();
+                        list.displayAppointment();
+                    }
+                }
             }
             
 // TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES
