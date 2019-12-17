@@ -73,7 +73,7 @@ public class Appointment{
                 
                 // Checking if starting appoint before current exact time
                 do{
-                    System.out.print("Enter start appointment date in format (eg. 30/12/2019 18:56)\n[Include any letter to quit]: ");
+                    System.out.print("\nEnter start appointment date in format (eg. 30/12/2019 18:56)\n[Include any letter to quit]: ");
                     start = s.nextLine();
 
                     if (sdf.parse(start).before(now)) {
@@ -86,7 +86,7 @@ public class Appointment{
                 
                 // Checking if end appointment is after start appointment
                 do{
-                    System.out.print("Enter end appointment date in format (eg. 31/12/2019 00:56)\n[Include any letter to quit]: ");
+                    System.out.print("\nEnter end appointment date in format (eg. 31/12/2019 00:56)\n[Include any letter to quit]: ");
                     end = s.nextLine();
                     
                     if (sdf.parse(end).before(sdf.parse(start))) {
