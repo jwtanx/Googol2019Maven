@@ -17,7 +17,7 @@ public class LoadData {
     private int numOfSearch;
     
     // LIST OF FILE PATH
-    private File dataDirectory = new File(System.getProperty("user.home") + "\\Desktop\\Googol");
+//    private File dataDirectory = new File(System.getProperty("user.home") + "\\Desktop\\Googol");
     
     private Scanner s = new Scanner(System.in);
     
@@ -34,15 +34,19 @@ public class LoadData {
 
         String name = s.nextLine();
         name = name.toUpperCase();
-        File dataPath = new File(dataDirectory + "\\" + name + "_Data.dat");
-        File userHistory = new File(dataDirectory + "\\" + name + "_History.txt");
+//        File dataPath = new File(dataDirectory + "\\" + name + "_Data.dat");
+//        File userHistory = new File(dataDirectory + "\\" + name + "_History.txt");
+        File dataPath = new File(name + "_Data.dat");
+        File userHistory = new File(name + "_History.txt");
 
         try {
             
             if (!dataPath.exists()) {
                 this.name = name;
-                dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
-                userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+//                dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
+//                userHistory = new File(dataDirectory + "\\" + this.name + "_History.txt");
+                dataPath = new File(this.name + "_Data.dat");
+                userHistory = new File(this.name + "_History.txt");
 
                 System.out.println("Welcome to Googol, " + this.name + "!");
 
@@ -56,7 +60,8 @@ public class LoadData {
 
             } else {
                 this.name = name;
-                dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
+//                dataPath = new File(dataDirectory + "\\" + this.name + "_Data.dat");
+                dataPath = new File(this.name + "_Data.dat");
                 ObjectInputStream in = new ObjectInputStream(new FileInputStream(dataPath));
                 String getName = "";
                 int numOfSearch = 0;
