@@ -3,9 +3,9 @@ package com.superjeevan.googol2019maven;
 import java.util.Scanner;
 
 public class CalculatorV2 {
-    
+
     private int n = 0;
-    
+
     public CalculatorV2(String cmd, int n) {
         this.n = n;
         Scanner s = new Scanner(System.in);
@@ -13,18 +13,18 @@ public class CalculatorV2 {
         do {
             System.out.print("Numeric expression: ");
             String equa = "";
-            if(this.n == 0){
+            if (this.n == 0) {
                 this.n++;
                 System.out.println(cmd);
                 equa = cmd.replaceAll(" ", "");
-            }else{
+            } else {
                 equa = s.nextLine();
                 equa = equa.replaceAll(" ", "");
                 if (equa.equals("")) {
                     continue error8;
                 }
             }
-            
+
             int i = equa.length();
             boolean cond = false;
             boolean cond1 = false;
@@ -37,6 +37,7 @@ public class CalculatorV2 {
             boolean[] zero = new boolean[i];
             int[] cnn1 = new int[i];
             double a = 0;
+            boolean a1 = false;
             int[] cnn3 = new int[i];
             int[] cnn4 = new int[i];
             int[] cnn5 = new int[i];
@@ -286,6 +287,7 @@ public class CalculatorV2 {
                                 num[j] = num[j] * num[j + 1];
                                 num[j + 1] = num[j];
                                 a = num[j];
+                                a1 = true;
                                 cnn2[j] = j;
                                 if (j == 0) {
                                     cond2 = true;
@@ -334,6 +336,7 @@ public class CalculatorV2 {
                                 num[j] = num[j + 1] / num[j];
                                 num[j + 1] = num[j];
                                 a = num[j];
+                                a1 = true;
                                 cnn2[j] = j;
                                 if (j == 0) {
                                     cond2 = true;
@@ -364,6 +367,7 @@ public class CalculatorV2 {
                                 num[j] = num[j] + num[j + 1];
                                 num[j + 1] = num[j];
                                 a = num[j];
+                                a1 = true;
                                 if (j == 0) {
                                     cond2 = true;
                                 }
@@ -419,6 +423,7 @@ public class CalculatorV2 {
                                     num[j] = num[j + 1] - num[j];
                                     num[j + 1] = num[j];
                                     a = num[j];
+                                    a1 = true;
                                     if (j == 0) {
                                         cond2 = true;
                                     }
@@ -448,6 +453,7 @@ public class CalculatorV2 {
                                     num[j] = num[j + 1] + num[j] * -1;
                                     num[j + 1] = num[j];
                                     a = num[j];
+                                    a1 = true;
                                     skip8:
                                     for (int k = 1; j - k >= 0; k++) {
                                         if (cnn1[j - k] == j - k && (j - k) != 0) {
@@ -498,7 +504,7 @@ public class CalculatorV2 {
                     for (int j = close1 + 2; j <= open1; j++) {
                         num[j] = num[close1 + 1];
                     }
-                    if (num[open1] != a) {
+                    if ((num[open1] != a && a != 0) || (a == 0 && a1 == true)) {
                         num[open1] = a;
                     }
                     if (num[open1 + 1] == 0 & zero[open1 + 1] == false) {
@@ -605,7 +611,7 @@ public class CalculatorV2 {
                         }
                         skip1:
                         for (int k = 1; j - k >= 0; k++) {
-                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true)) {
+                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true) || (cnn5[j - k] == j - k && cnn5[j - k] != 0)) {
                                 num[j - k] = num[j];
                             } else if ((cnn4[j - k] == j - k && (j - k) != 0) || ((j - k) == 0 && cond4 == true)) {
                                 if ((num[j - k] == 0 && zero[j - k] == false) || (num[j - k] != 0 && cnn6[j - k] == j - k)) {
@@ -664,7 +670,7 @@ public class CalculatorV2 {
                         }
                         skip1:
                         for (int k = 1; j - k >= 0; k++) {
-                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true)) {
+                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true) || (cnn5[j - k] == j - k && cnn5[j - k] != 0)) {
                                 num[j - k] = num[j];
                             } else if ((cnn4[j - k] == j - k && (j - k) != 0) || ((j - k) == 0 && cond4 == true)) {
                                 if ((num[j - k] == 0 && zero[j - k] == false) || (num[j - k] != 0 && cnn6[j - k] == j - k)) {
@@ -718,7 +724,7 @@ public class CalculatorV2 {
                         }
                         skip1:
                         for (int k = 1; j - k >= 0; k++) {
-                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true)) {
+                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true) || (cnn5[j - k] == j - k && cnn5[j - k] != 0)) {
                                 num[j - k] = num[j];
                             } else if ((cnn4[j - k] == j - k && (j - k) != 0) || ((j - k) == 0 && cond4 == true)) {
                                 if ((num[j - k] == 0 && zero[j - k] == false) || (num[j - k] != 0 && cnn6[j - k] == j - k)) {
@@ -794,7 +800,7 @@ public class CalculatorV2 {
                         }
                         skip1:
                         for (int k = 1; j - k >= 0; k++) {
-                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true)) {
+                            if ((cnn3[j - k] == (j - k) && j - k != 0) || (cnn3[j - k] == 0 && cond2 == true) || (cnn5[j - k] == j - k && cnn5[j - k] != 0)) {
                                 num[j - k] = num[j];
                             } else if ((cnn4[j - k] == j - k && (j - k) != 0) || ((j - k) == 0 && cond4 == true)) {
                                 if ((num[j - k] == 0 && zero[j - k] == false) || (num[j - k] != 0 && cnn6[j - k] == j - k)) {
@@ -814,7 +820,7 @@ public class CalculatorV2 {
                     }
                 }
             }
-            System.out.printf("Answer: %.2f \n", num[0]);
+            System.out.printf("Answer: %.9f \n", num[0]);
 
             System.out.println("Enter any button to continue / "
                     + "'no' to exit");
