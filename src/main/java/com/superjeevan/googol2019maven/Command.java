@@ -245,26 +245,8 @@ public class Command {
 // APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT 
             else if(cmd.toLowerCase().contains("appointment")){
                 
-                if(cmd.toLowerCase().contains("show ") || cmd.toLowerCase().contains("list ")){
-                    Appointment list = new Appointment();
-                    list.displayAppointment();
-                    
-                } else if(cmd.toLowerCase().contains("set ")){
-                    Appointment set = new Appointment();
-                    set.askStartEndNCreateAppointment();
-                } else {
-                    
-                    System.out.print("Set or display: ");
-                    String appointmentChoice = s.nextLine();
-
-                    if (appointmentChoice.equalsIgnoreCase("set")) {
-                        Appointment set = new Appointment();
-                        set.askStartEndNCreateAppointment();
-                    } else if (appointmentChoice.equalsIgnoreCase("display")) {
-                        Appointment list = new Appointment();
-                        list.displayAppointment();
-                    }
-                }
+                Appointment toAppointment = new Appointment(cmd);
+                
             }
             
 // TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES TELL JOKES
