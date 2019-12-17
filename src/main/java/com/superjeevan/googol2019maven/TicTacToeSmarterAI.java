@@ -55,8 +55,6 @@ public class TicTacToeSmarterAI {
             cls();
             displayTic();
             
-            if(counter == 9)
-            {System.out.println("Tie! ");break;}
             if(tictactoe[0] == 'X' && tictactoe[1] == 'X' && tictactoe[2] == 'X' )
             {System.out.println("Player 1 wins!");break;}
             if(tictactoe[0] == 'X' && tictactoe[3] == 'X' && tictactoe[6] == 'X' )
@@ -73,6 +71,7 @@ public class TicTacToeSmarterAI {
             {System.out.println("Player 1 wins!");break;}
             if(tictactoe[0] == 'X' && tictactoe[4] == 'X' && tictactoe[8] == 'X' )
             {System.out.println("Player 1 wins!");break;}
+            if(counter == 9){System.out.println("Tie! ");break;}
             player++;
             System.out.print("Enter position for player " + player + " [Any letter to quit] : ");
             counter++;
@@ -142,21 +141,21 @@ public class TicTacToeSmarterAI {
             displayTic();
             
             if(tictactoe[0] == 'X' && tictactoe[1] == 'X' && tictactoe[2] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(tictactoe[0] == 'X' && tictactoe[3] == 'X' && tictactoe[6] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(tictactoe[1] == 'X' && tictactoe[4] == 'X' && tictactoe[7] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(tictactoe[2] == 'X' && tictactoe[5] == 'X' && tictactoe[8] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(tictactoe[3] == 'X' && tictactoe[4] == 'X' && tictactoe[5] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(tictactoe[6] == 'X' && tictactoe[7] == 'X' && tictactoe[8] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(tictactoe[2] == 'X' && tictactoe[4] == 'X' && tictactoe[6] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(tictactoe[0] == 'X' && tictactoe[4] == 'X' && tictactoe[8] == 'X' )
-            {System.out.println("Player 1 wins!");break;}
+            {System.out.println("You win!");break;}
             if(counter == 9)
             {System.out.println("Tie!");break;}
             
