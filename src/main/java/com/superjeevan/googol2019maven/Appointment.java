@@ -19,8 +19,36 @@ public class Appointment{
     private File appointment = new File("Appointment.txt");
     private DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-    public Appointment() {
+    public Appointment(String cmd) {
+        if(cmd.toLowerCase().contains("show ") || cmd.toLowerCase().contains("list ")) {
+            displayAppointment();
 
+        } else if (cmd.toLowerCase().contains("set ")) {
+            askStartEndNCreateAppointment();
+
+        } else if (cmd.toLowerCase().contains("delete ")) {
+            System.err.print("Are you sure you want to delete appointment(s)(Y/N): ");
+            char choice = s.next().charAt(0);
+            
+            if(choice == 'y' || choice == 'Y'){
+                deleteAppointment();
+            } else {
+                System.err.println("Action cancelled.");
+            }
+            
+        } else {
+
+            System.out.print("Set, display or delete: ");
+            String appointmentChoice = s.nextLine();
+
+            if (appointmentChoice.equalsIgnoreCase("set")) {
+                askStartEndNCreateAppointment();
+            } else if (appointmentChoice.equalsIgnoreCase("display")) {
+                displayAppointment();
+            } else if (appointmentChoice.equalsIgnoreCase("delete")) {
+                deleteAppointment();
+            }
+        }
     }
 
     public void askStartEndNCreateAppointment() {
@@ -173,5 +201,16 @@ public class Appointment{
         }
         
     }
+    
+    public void deleteAppointment(){
+        
+        if(appointment.delete()){
+            System.err.println("Appointments deleted successfully.");
+        } else {
+            System.err.println("Unknown error. Cannot be deleted.");
+        }
+        
+    }
+    
 
 }
