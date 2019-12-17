@@ -76,7 +76,7 @@ public class Appointment{
                     System.out.print("Enter start appointment date in format (eg. 30/12/2019 18:56) [Type \"Q\" to Quit]: ");
                     start = s.nextLine();
                     if(start.equalsIgnoreCase("q")){
-                        System.exit(0);
+                        break;
                     }
 
                     if (sdf.parse(start).before(now)) {
@@ -92,7 +92,7 @@ public class Appointment{
                     System.out.print("Enter end appointment date in format (eg. 31/12/2019 00:56) [Type \"Q\" to Quit]: ");
                     end = s.nextLine();
                     if(end.equalsIgnoreCase("q")){
-                        System.exit(0);
+                        break;
                     }
                     
                     if (sdf.parse(end).before(sdf.parse(start))) {
