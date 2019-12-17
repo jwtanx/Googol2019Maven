@@ -245,7 +245,7 @@ public class Command {
 // APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT APPOINTMENT 
             else if(cmd.equalsIgnoreCase("appointment") || cmd.toLowerCase().contains(" appointment") || cmd.toLowerCase().contains("appointment ")){
                 
-                Appointment toAppointment = new Appointment(cmd);
+                Appointment toAppointment = new Appointment(cmd, name);
                 
             }
             
