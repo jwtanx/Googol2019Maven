@@ -27,7 +27,7 @@ public class Appointment{
             askStartEndNCreateAppointment();
 
         } else if (cmd.toLowerCase().contains("delete ")) {
-            System.err.print("Are you sure you want to delete appointment(s)(Y/N): ");
+            System.err.print("Are you sure you want to delete your appointment(s) (Y/N): ");
             char choice = s.next().charAt(0);
             
             if(choice == 'y' || choice == 'Y'){
@@ -38,12 +38,12 @@ public class Appointment{
             
         } else {
 
-            System.out.print("Set, display or delete: ");
+            System.out.print("Set, list or delete: ");
             String appointmentChoice = s.nextLine();
 
             if (appointmentChoice.equalsIgnoreCase("set")) {
                 askStartEndNCreateAppointment();
-            } else if (appointmentChoice.equalsIgnoreCase("display")) {
+            } else if (appointmentChoice.equalsIgnoreCase("list")) {
                 displayAppointment();
             } else if (appointmentChoice.equalsIgnoreCase("delete")) {
                 deleteAppointment();
@@ -73,11 +73,8 @@ public class Appointment{
                 
                 // Checking if starting appoint before current exact time
                 do{
-                    System.out.print("Enter start appointment date in format (eg. 30/12/2019 18:56) [Type \"Q\" to Quit]: ");
+                    System.out.print("Enter start appointment date in format (eg. 30/12/2019 18:56)\n[Include any letter to quit]: ");
                     start = s.nextLine();
-                    if(start.equalsIgnoreCase("q")){
-                        break;
-                    }
 
                     if (sdf.parse(start).before(now)) {
                         System.err.println("Forget the past. Let's move forward.");
@@ -89,11 +86,8 @@ public class Appointment{
                 
                 // Checking if end appointment is after start appointment
                 do{
-                    System.out.print("Enter end appointment date in format (eg. 31/12/2019 00:56) [Type \"Q\" to Quit]: ");
+                    System.out.print("Enter end appointment date in format (eg. 31/12/2019 00:56)\n[Include any letter to quit]: ");
                     end = s.nextLine();
-                    if(end.equalsIgnoreCase("q")){
-                        break;
-                    }
                     
                     if (sdf.parse(end).before(sdf.parse(start))) {
                         System.err.println("You cannot do things in reverse time. That's illegal.");
@@ -114,8 +108,7 @@ public class Appointment{
                 }
             } while (true);
         } catch (ParseException pe) {
-            System.err.println("Parsing error. System restarted.");
-            askStartEndNCreateAppointment();
+//            System.err.println("Parsing error. System restarted.");
         }
     }
 
