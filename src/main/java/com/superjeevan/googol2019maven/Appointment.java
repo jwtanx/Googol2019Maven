@@ -20,7 +20,7 @@ public class Appointment{
     private DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     public Appointment() {
-        askStartEndNCreateAppointment();
+
     }
 
     public void askStartEndNCreateAppointment() {
@@ -151,6 +151,27 @@ public class Appointment{
         }
 
         return true;
+    }
+    
+    public void displayAppointment(){
+        
+        try{
+            Scanner sc = new Scanner(new FileInputStream(appointment));
+            
+            // Skipping the default appointment
+            sc.nextLine();
+            
+            while(sc.hasNextLine()){
+                
+                System.out.println(sc.nextLine());
+                
+            }
+            
+            sc.close();
+        } catch(FileNotFoundException fnf){
+            System.err.println("No appointment created.");
+        }
+        
     }
 
 }
