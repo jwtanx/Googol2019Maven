@@ -254,7 +254,7 @@ public class Command {
                     set.askStartEndNCreateAppointment();
                 } else {
                     
-                    System.out.println("Set or display: ");
+                    System.out.print("Set or display: ");
                     String appointmentChoice = s.nextLine();
 
                     if (appointmentChoice.equalsIgnoreCase("set")) {
