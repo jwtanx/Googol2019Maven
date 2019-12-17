@@ -16,10 +16,14 @@ import java.util.Scanner;
 public class Appointment{
 
     private Scanner s = new Scanner(System.in);
-    private File appointment = new File("Appointment.txt");
+    private String name;
+    private File appointment = new File(name + "_Appointment.txt");
     private DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-    public Appointment(String cmd) {
+    
+    public Appointment(String cmd, String name) {
+        this.name = name;
+        appointment = new File(name + "_Appointment.txt");
+        
         if(cmd.toLowerCase().contains("show ") || cmd.toLowerCase().contains("list ")) {
             displayAppointment();
 
@@ -37,16 +41,20 @@ public class Appointment{
             }
             
         } else {
-
-            System.out.print("Set, list or delete: ");
-            String appointmentChoice = s.nextLine();
-
-            if (appointmentChoice.equalsIgnoreCase("set")) {
-                askStartEndNCreateAppointment();
-            } else if (appointmentChoice.equalsIgnoreCase("list")) {
+            
+            if(cmd.contains("list")){
                 displayAppointment();
-            } else if (appointmentChoice.equalsIgnoreCase("delete")) {
-                deleteAppointment();
+            }else{
+                System.out.print("Set, list or delete: ");
+                String appointmentChoice = s.nextLine();
+
+                if (appointmentChoice.equalsIgnoreCase("set")) {
+                    askStartEndNCreateAppointment();
+                } else if (appointmentChoice.equalsIgnoreCase("list")) {
+                    displayAppointment();
+                } else if (appointmentChoice.equalsIgnoreCase("delete")) {
+                    deleteAppointment();
+                }
             }
         }
     }
@@ -98,7 +106,7 @@ public class Appointment{
                 } while(!sdf.parse(end).after(sdf.parse(start)));
 
                 if (search(start, end)) {
-                    System.out.print("Time available! Insert appointment detail: ");
+                    System.out.print("\nTime available! Insert appointment detail: ");
                     String detail = s.nextLine();
                     setAppointment(sdf.format(sdf.parse(start)) + " -> " + sdf.format(sdf.parse(end)) + " -> " + detail);
                     System.out.println("Appointment saved!");
