@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ import org.jsoup.select.Elements;
 
 public class WeatherUpdate {
 
-    private File filename = new File("WeatherData.dat");
+    private File filename = new File("WeatherData.txt");
     private String WeatherSearch;
     private String location = "";
     private Scanner s = new Scanner(System.in);
@@ -145,12 +146,12 @@ public class WeatherUpdate {
             }
 
             try {
-                ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filename));
+                PrintWriter writer = new PrintWriter(new FileOutputStream(filename));
 
-                writer.writeUTF("Weather condition in " + location + ": ");
+                writer.println("Weather condition in " + location + ": ");
 
                 for (int i = 0; i < 9; i++) {
-                    writer.writeUTF(list[i]);
+                    writer.println(list[i]);
                 }
                 Date t = new Date();
                 System.out.println("Successfully update these weeks weather at " + t);
