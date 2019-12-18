@@ -181,7 +181,7 @@ public class Appointment {
                 }
             } while (true);
         } catch (ParseException pe) {
-//            System.err.println("Parsing error. System restarted.");
+            System.err.println("Kindly make sure all the details are input. Please try again.");
         }
     }
 
