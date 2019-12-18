@@ -47,10 +47,9 @@ public class Command {
                 "Dice\t\t\t\tDice game",
                 "Jokes\t\t\t\tSkrattar du förlorar du",
                 "Movie\t\t\t\tTop movies",
-                "Weather\t\t\t\tDisplay weather today, weather tomorrow",
-                "Weather\t\t\t\tWeather on 25/12",
+                "Weather\t\t\t\tDisplay weather today, weather tomorrow, Weather on 25/12",
                 "Appointment\t\t\tSet an appointment, List appointments, Delete appointments",
-                "Appointment\t\t\tShow appointments today, List appointment on 25/12",
+                "Appointment\t\t\tShow appointments today, List appointment on 25/12/2019",
                 "Exit\t\t\t\tLog out"};
 
     // LIST OF FILE PATH
