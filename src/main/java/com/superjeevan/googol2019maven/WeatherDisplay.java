@@ -167,11 +167,11 @@ public class WeatherDisplay {
             Date dayToSearch = sd.parse(weatherStr);
             
             Scanner sc = new Scanner(new FileInputStream(filename));
-            int line = 10;
+            int line = 9;
             
             // Location
             System.out.println(sc.nextLine());
-            
+            boolean gotDate = false;
             for(int i = 0; i < line; i++){
                 
                 String[] dateStr = sc.nextLine().split(" : ");
@@ -179,7 +179,12 @@ public class WeatherDisplay {
                 
                 if(dayToSearch.equals(dateOnLine)){
                     System.out.println(dateStr[0] + " : " + dateStr[1]);
+                    gotDate = true;
                     break;
+                } else {
+                    if(gotDate == false && i == 8){
+                        System.out.println("Not available. Kindly wait for the server to update the data in the future.");
+                    }
                 }
                 
             }
