@@ -4,7 +4,8 @@ public class RateConvert {
 
     public RateConvert(String cmd) {
         boolean run = true;
-
+        
+        Run:
         while (run) {
             String CUR1 = "";
             String CUR2 = "";
@@ -56,32 +57,48 @@ public class RateConvert {
 
             // Converting MYR to other currency
             if (CUR1.equals("MYR")) {
-                CUR2Rate = a.load(CUR2);
-
-                rate = 1 / CUR2Rate;
-                double converted = amount * rate;
-                System.out.printf("%f %s = %.3f %s\n", amount, CUR1, converted, CUR2);
-
-            } else {
-                CUR1Rate = a.load(CUR1);
-
-                // Converting other currency to other or MYR
-                if (CUR2.equals("MYR")) {
-
-                    System.out.printf("%f %s = %f %s\n", amount, CUR1, (amount * CUR1Rate), CUR2);
-
+                CUR2Rate = a.load(CUR2, true);
+                
+                if (CUR2Rate == 0) {
+                    System.out.println("Sorry! Currency " + CUR2 + " is not found in our database.");
+                    run = false;
+                    break Run;
                 } else {
-                    CUR2Rate = a.load(CUR2);
-
-                    if (CUR2Rate == 0) {
-                        System.out.println("Sorry! Currency " + CUR2 + " is not found in our database.");
-                        run = false;
-                        break;
-                    }
-
-                    rate = CUR1Rate * (1 / CUR2Rate);
+                    rate = 1 / CUR2Rate;
                     double converted = amount * rate;
-                    System.out.printf("%f %s = %.3f %s\n", amount, CUR1, converted, CUR2);
+                    System.out.printf("%.2f %s = %.3f %s\n", amount, CUR1, converted, CUR2);
+                }
+                
+            } else {
+                CUR1Rate = a.load(CUR1, true);
+                
+                if (CUR1Rate == 0) {
+                    System.out.println("Sorry! Currency " + CUR1 + " is not found in our database.");
+                    run = false;
+                    break Run;
+                }
+                
+                else {
+                // Converting other currency to other or MYR
+                    if (CUR2.equals("MYR")) {
+
+                        System.out.printf("%.2f %s = %.3f %s\n", amount, CUR1, (amount * CUR1Rate), CUR2);
+
+                    } else {
+                        CUR2Rate = a.load(CUR2, false);
+
+                        if (CUR2Rate == 0) {
+                            System.out.println("Sorry! Currency " + CUR2 + " is not found in our database.");
+                            run = false;
+                            break Run;
+                        } else {
+
+                        rate = CUR1Rate * (1 / CUR2Rate);
+                        double converted = amount * rate;
+                        System.out.printf("%.2f %s = %.3f %s\n", amount, CUR1, converted, CUR2);
+                        
+                        }
+                    }
                 }
             }
                 run = false;

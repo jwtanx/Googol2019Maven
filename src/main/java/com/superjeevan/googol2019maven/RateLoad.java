@@ -15,11 +15,11 @@ public class RateLoad {
         filename = new File("ExchangeRate.dat");
     }
 
-    public double load(String CUR) {
+    public double load(String CUR, boolean a) {
 
         Date d1 = new Date(filename.lastModified());
 
-        if (checkIfNeedUpdate(d1)) {
+        if (checkIfNeedUpdate(d1) && a == true) {
             System.out.println("Upon checking, your exchange rate data are outdated. Update will be proceeded.");
             if (checkConnection()) {
                 System.out.println("Updating data now...");

@@ -258,7 +258,14 @@ public class Command {
             }
             
 // DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME
-            else if (cmd.toLowerCase().contains("roll dice game") || cmd.toLowerCase().contains("dice")) {
+            else if (cmd.toLowerCase().contains("roll a dice")) {
+                
+                System.out.println("You rolled " + (1 + r.nextInt(6)) + "!");
+                
+            }
+            
+// DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME DICE GAME
+            else if (cmd.toLowerCase().contains("dice game")) {
 
                 DiceGame game = new DiceGame();
                 

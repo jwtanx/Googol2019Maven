@@ -21,7 +21,7 @@ public class WeatherDisplay {
     private DateFormat sd = new SimpleDateFormat("dd.MMM");
 
     public WeatherDisplay(String cmd) {
-        System.out.println("\nThis weather is provided by WeatherAtlas (https://www.weather-my.com)");
+//        System.out.println("\nThis weather is provided by WeatherAtlas (https://www.weather-my.com)");
         lookFile(cmd);
     }
 
